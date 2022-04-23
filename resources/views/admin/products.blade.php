@@ -37,7 +37,10 @@
                         <td>{{ $product->price }}</td>
                         <td><img src="/storage/{{ $product->image }}"></td>
                         <td>
-                            <button class="btn btn-primary mb-2">Update</button>
+                            <form class="mb-2" action="/products/{{ $product->id }}/update">
+                                 @csrf
+                                 <button class="btn btn-primary">Update</button>
+                             </form>
                             <form action="/products/{{ $product->id }}/delete" method="POST">
                                @method('DELETE')
                                 @csrf
