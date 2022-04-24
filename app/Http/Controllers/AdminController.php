@@ -30,7 +30,7 @@ class AdminController extends Controller
 
     public function destroy(Product $product){
     $product->delete();
-    return back()->with('success','Successly Deleted');
+    return back()->with('success','Successfully Deleted');
     }
 
     public function updateProduct(Product $product){
