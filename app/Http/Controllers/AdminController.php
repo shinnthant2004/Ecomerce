@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function product(){
-        return view('admin.product');
+        return view('admin.product',[
+            'categories'=>Category::all()
+        ]);
     }
 
     public function uploadProduct(Request $request){
+        $request->validate([
+            'category_id'=>['required']
+        ]);
       $data=new Product;
       $imagename=request()->file('image')->store('uploadImage');
       $data->image=$imagename;
@@ -19,6 +25,7 @@ class AdminController extends Controller
       $data->price=$request->price;
       $data->description=$request->des;
       $data->quantity=$request->quantity;
+      $data->category_id=$request->category_id;
       $data->save();
       return redirect()->back()->with('success','New Projuct Added');
     }

@@ -41,6 +41,13 @@
                            <label class="form-label me-3" for="quantity">Quantity</label>
                            <input class="form-control-sm text-dark rounded-3" name="quantity" type="number" id="quantity" placeholder="Product quantity">
                        </div>
+                       <div class="my-3" style="width: 344px">
+                           <select class="form-control text-white" name="category_id">
+                               @foreach ($categories as $category)
+                               <option {{ $category->id=== old('category_id') ? 'selected' : ''}} value="{{ $category->id }}">{{ $category->name }}</option>
+                               @endforeach
+                           </select>
+                       </div>
                        <div class="mt-3">
                            <input class="form-control-sm text-white p-2 rounded-3" name="image" type="file" id="image" placeholder="Product image">
                        </div>

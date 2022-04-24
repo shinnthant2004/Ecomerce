@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-
+    <base href="/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -64,6 +64,7 @@ https://templatemo.com/tm-546-sixteen-clothing
               <li class="nav-item">
                 <a class="nav-link" href="contact.html">Contact Us</a>
               </li>
+
               <li class="nav-item">
                 @if (Route::has('login'))
                     @auth
@@ -82,7 +83,6 @@ https://templatemo.com/tm-546-sixteen-clothing
         </div>
       </nav>
     </header>
-
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     <div class="banner header-text">
@@ -108,8 +108,85 @@ https://templatemo.com/tm-546-sixteen-clothing
       </div>
     </div>
     <!-- Banner Ends Here -->
+    <div class="latest-products">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="section-heading">
+                <h2>Latest Products</h2>
+                <a href="products.html">view all products <i class="fa fa-angle-right"></i></a>
+              </div>
+            </div>
+            <div class="col-md-12 my-3">
+                <div class="d-flex justify-content-between align-content-center">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-facebook dropdown-toggle" data-toggle="dropdown">
+                          {{ request('category') ? request('category') : 'Categories' }}
+                        </button>
+                        <div class="dropdown-menu">
+                          @foreach ($categories as $category)
+                          <a class="dropdown-item" href="/redirect/?category={{ $category->slug }}{{ request('search') ? '&search='.request('search') : '' }}">{{ $category->name }}</a>
+                          @endforeach
+                        </div>
+                      </div>
 
-    @include('user.products')
+                      <div class="d-flex justify-content-between" style="width: 346px">
+
+                          <div class="me-2" style="width: 35px;
+                                                   border:none;
+                                                   border-radius: 4px;
+                                                   text-align: center;
+                                                   line-height: 39px;
+                                                   background-color: lightblue">
+                            <a href="/"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                          </div>
+
+                        <form action="/redirect">
+                            @if (request('category'))
+                            <input type="hidden"
+                                   name="category"
+                                   value="{{ request('category') }}"
+                            >
+                            @endif
+                              <input type="search" name="search" class="form-input" placeholder="Search...">
+                              <button type="submit" class="btn" style="background-color: lightblue;height:43px">Search</button>
+                        </form>
+
+                      </div>
+                </div>
+            </div>
+
+
+
+
+            @foreach ($data as $product)
+            <div class="col-md-4">
+                <div class="product-item">
+                  <a href="#"><img src="/storage/{{ $product->image }}" alt=""></a>
+                  <div class="down-content">
+                    <a href="#"><h4>{{ $product->title }}</h4></a>
+                    <h6>${{ $product->price }}</h6>
+                    <p>{{ $product->description }}</p>
+                    <ul class="stars">
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                    </ul>
+                    <span>Reviews (24)</span>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+
+            <div class="col-12">
+                {{ $data->links() }}
+            </div>
+
+          </div>
+        </div>
+      </div>
 
     <div class="best-features">
       <div class="container">
