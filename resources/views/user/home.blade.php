@@ -130,29 +130,33 @@ https://templatemo.com/tm-546-sixteen-clothing
                         </div>
                       </div>
 
-                      <div class="d-flex justify-content-between" style="width: 346px">
+                    @auth
+                    <div class="d-flex justify-content-between" style="width: 346px">
 
-                          <div class="me-2" style="width: 35px;
-                                                   border:none;
-                                                   border-radius: 4px;
-                                                   text-align: center;
-                                                   line-height: 39px;
-                                                   background-color: lightblue">
-                            <a href="/"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
-                          </div>
-
-                        <form action="/redirect">
-                            @if (request('category'))
-                            <input type="hidden"
-                                   name="category"
-                                   value="{{ request('category') }}"
-                            >
-                            @endif
-                              <input type="search" name="search" class="form-input" placeholder="Search...">
-                              <button type="submit" class="btn" style="background-color: lightblue;height:43px">Search</button>
-                        </form>
-
+                        <div class="me-2" style="width: 35px;
+                                                 border:none;
+                                                 border-radius: 4px;
+                                                 text-align: center;
+                                                 line-height: 39px;
+                                                 background-color: lightblue">
+                          <a href="/"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
                       </div>
+
+                      <form action="/redirect">
+                          @if (request('category'))
+                          <input type="hidden"
+                                 name="category"
+                                 value="{{ request('category') }}"
+                          >
+                          @endif
+                            <input type="search" name="search" class="form-input" placeholder="Search...">
+                            <button type="submit" class="btn" style="background-color: lightblue;height:43px">Search</button>
+                      </form>
+
+                  </div>
+                  @else
+                <p class="text-warning fw-bold">Please Login to search</p>
+                  @endauth
                 </div>
             </div>
 
