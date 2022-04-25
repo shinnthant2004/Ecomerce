@@ -83,6 +83,7 @@ https://templatemo.com/tm-546-sixteen-clothing
         </div>
       </nav>
     </header>
+
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     <div class="banner header-text">
@@ -108,6 +109,9 @@ https://templatemo.com/tm-546-sixteen-clothing
       </div>
     </div>
     <!-- Banner Ends Here -->
+    @if (session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+       @endif
     <div class="latest-products">
         <div class="container">
           <div class="row">
@@ -171,14 +175,13 @@ https://templatemo.com/tm-546-sixteen-clothing
                     <a href="#"><h4>{{ $product->title }}</h4></a>
                     <h6>${{ $product->price }}</h6>
                     <p>{{ $product->description }}</p>
-                    <ul class="stars">
-                      <li><i class="fa fa-star"></i></li>
-                      <li><i class="fa fa-star"></i></li>
-                      <li><i class="fa fa-star"></i></li>
-                      <li><i class="fa fa-star"></i></li>
-                      <li><i class="fa fa-star"></i></li>
-                    </ul>
-                    <span>Reviews (24)</span>
+                    <form action="/carts/{{ $product->id }}" method="POST">
+                        @csrf
+
+                            <input type="number" name="quantity" class="w-25" style="height: 36px" min="1" placeholder="1">
+                            <button type="submit" class="btn btn-outline-primary text-black">Add Cart</button>
+
+                    </form>
                   </div>
                 </div>
               </div>
