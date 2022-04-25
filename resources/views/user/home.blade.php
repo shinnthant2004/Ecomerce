@@ -68,6 +68,10 @@ https://templatemo.com/tm-546-sixteen-clothing
               <li class="nav-item">
                 @if (Route::has('login'))
                     @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="/carts/mycart">
+                            <i class="fa fa-shopping-cart mr-2"></i>Carts [{{ $cartCount }}]</a>
+                      </li>
                         <x-app-layout></x-app-layout>
                     @else
                         <li><a class="nav-link" href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a></li>
@@ -255,7 +259,7 @@ https://templatemo.com/tm-546-sixteen-clothing
             <div class="inner-content">
               <p>Copyright &copy; 2020 Sixteen Clothing Co., Ltd.
 
-            - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+            - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">Developed By Shinn Thant</a></p>
             </div>
           </div>
         </div>

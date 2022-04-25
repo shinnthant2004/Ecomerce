@@ -19,9 +19,13 @@ class HomeController extends Controller
         if($usertype=='1'){
             return view('admin.home');
         }else{
+            $user=Auth::user();
+            $carts=Cart::where('phone',$user->phone);
+            $cartCount=$carts->count();
             return view('user.home',[
                 'data'=>Product::latest()->filter(request(['category','search']))->paginate(3)->withQueryString(),
-                'categories'=>Category::all()
+                'categories'=>Category::all(),
+                'cartCount'=>$cartCount
             ]);
         }
     }
@@ -31,7 +35,7 @@ class HomeController extends Controller
      }else{
         return view('user.home',[
             'data'=>Product::latest()->filter(request(['category','search']))->paginate(3)->withQueryString(),
-            'categories'=>Category::all()
+            'categories'=>Category::all(),
         ]);
      }
     }
@@ -56,5 +60,14 @@ class HomeController extends Controller
        }else{
          return redirect('/login');
        }
+    }
+    public function mycarts(){
+        $user=Auth::user();
+        $carts=Cart::where('phone',$user->phone);
+        $cartCount=$carts->count();
+      return view('user.mycart',[
+          'cartCount'=>$cartCount,
+          'carts'=>$carts->get()
+      ]);
     }
 }

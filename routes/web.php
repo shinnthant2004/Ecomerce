@@ -38,3 +38,4 @@ Route::get('/products/{product}/update',[AdminController::class,'updateProduct']
 Route::post('/products/{product}/updated',[AdminController::class,'updateDProduct']);
 
 Route::post('/carts/{product}',[HomeController::class,'addcart']);
+Route::get('/carts/mycart',[HomeController::class,'mycarts']);
