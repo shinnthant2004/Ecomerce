@@ -42,3 +42,6 @@ Route::get('/carts/mycart',[HomeController::class,'mycarts']);
 
 Route::get('/carts/{cart}/delete',[HomeController::class,'destroy']);
 Route::post('/orders',[HomeController::class,'confirmOrder']);
+Route::get('/admin_order',[AdminController::class,'orders']);
+Route::get('/deliver/{order}',[AdminController::class,'deliver']);
+

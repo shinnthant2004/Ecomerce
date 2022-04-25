@@ -100,5 +100,13 @@
               <span class="menu-title">Show Products</span>
             </a>
           </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="/admin_order">
+              <span class="menu-icon">
+                <i class="mdi mdi-file-document-box"></i>
+              </span>
+              <span class="menu-title">Orders</span>
+            </a>
+          </li>
       </ul>
     </nav>
