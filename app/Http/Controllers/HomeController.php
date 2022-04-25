@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -80,5 +82,24 @@ class HomeController extends Controller
     public function destroy(Cart $cart){
         $cart->delete();
         return redirect()->back()->with('success','Removed That Cart');
+    }
+    public function confirmOrder(Request $request){
+       $user=Auth::user();
+       $name=$user->name;
+       $phone=$user->phone;
+       $address=$user->address;
+       foreach($request->productname as $key=>$productname){
+        $order=new Order;
+        $order->product_name=$request->productname[$key];
+        $order->quantity=$request->quantity[$key];
+        $order->price=$request->price[$key];
+        $order->status='not deliver';
+        $order->client_name=$name;
+        $order->phone=$phone;
+        $order->address=$address;
+        $order->save();
+       };
+       DB::table('carts')->where('phone',$phone)->delete();
+       return redirect()->back()->with('success','Successfully Ordered');
     }
 }

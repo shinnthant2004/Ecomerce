@@ -91,32 +91,38 @@ https://templatemo.com/tm-546-sixteen-clothing
          @if (session('success'))
           <div class="alert alert-success">{{ session('success') }}</div>
          @endif
-          <table class="table" style="width:800px">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Product Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($carts as $cart)
-              <tr>
-                <td>{{ $cart->product_name }}</td>
-                <td>{{ $cart->price }}</td>
-                <td>{{ $cart->quantity }}</td>
-                <td>
-                   <form action="/carts/{{ $cart->id }}/delete" method="POST">
-                    @method('DELETE')
-                    @csrf
-                       <button class="btn btn-danger text-white">Delete</button>
-                   </form>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
+          <form action="/orders" method="POST">
+            @csrf
+            <table class="table" style="width:800px">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($carts as $cart)
+                  <tr>
+                    <td>
+                        <input hidden name="productname[]" value="{{ $cart->product_name }}">
+                        {{ $cart->product_name }}</td>
+                    <td>
+                        <input hidden name="quantity[]" value="{{ $cart->quantity }}">
+                        {{ $cart->quantity }}</td>
+                    <td>
+                        <input hidden name="price[]" value="{{ $cart->price }}">
+                        $ {{ $cart->price }}</td>
+                    <td>
+                           <a href="/carts/{{ $cart->id }}/delete" class="btn btn-danger text-white">Delete</a>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+              <button class="btn btn-success">Order Confirm</button>
+          </form>
     </div>
     <footer>
       <div class="container">
