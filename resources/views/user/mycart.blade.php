@@ -51,7 +51,7 @@ https://templatemo.com/tm-546-sixteen-clothing
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home
+                <a class="nav-link" href="/">Home
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
@@ -88,13 +88,16 @@ https://templatemo.com/tm-546-sixteen-clothing
       </nav>
     </header>
      <div style="padding: 100px" align="center">
-
-          <table class="table">
+         @if (session('success'))
+          <div class="alert alert-success">{{ session('success') }}</div>
+         @endif
+          <table class="table" style="width:800px">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Product Name</th>
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -103,6 +106,13 @@ https://templatemo.com/tm-546-sixteen-clothing
                 <td>{{ $cart->product_name }}</td>
                 <td>{{ $cart->price }}</td>
                 <td>{{ $cart->quantity }}</td>
+                <td>
+                   <form action="/carts/{{ $cart->id }}/delete" method="POST">
+                    @method('DELETE')
+                    @csrf
+                       <button class="btn btn-danger text-white">Delete</button>
+                   </form>
+                </td>
               </tr>
               @endforeach
             </tbody>

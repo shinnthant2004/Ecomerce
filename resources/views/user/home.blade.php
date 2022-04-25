@@ -181,8 +181,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                     <p>{{ $product->description }}</p>
                     <form action="/carts/{{ $product->id }}" method="POST">
                         @csrf
-
-                            <input type="number" name="quantity" class="w-25" style="height: 36px" min="1" placeholder="1">
+                            <input type="number" name="quantity" class="w-25" style="height: 36px" min="1" value="1">
                             <button type="submit" class="btn btn-outline-primary text-black">Add Cart</button>
 
                     </form>

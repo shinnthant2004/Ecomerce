@@ -39,3 +39,5 @@ Route::post('/products/{product}/updated',[AdminController::class,'updateDProduc
 
 Route::post('/carts/{product}',[HomeController::class,'addcart']);
 Route::get('/carts/mycart',[HomeController::class,'mycarts']);
+
+Route::delete('/carts/{cart}/delete',[HomeController::class,'destroy']);

@@ -77,4 +77,8 @@ class HomeController extends Controller
           'carts'=>$carts->get()
       ]);
     }
+    public function destroy(Cart $cart){
+        $cart->delete();
+        return redirect()->back()->with('success','Removed That Cart');
+    }
 }
