@@ -51,18 +51,18 @@ https://templatemo.com/tm-546-sixteen-clothing
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home
+                <a class="nav-link" href="/">Home
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="products.html">Our Products</a>
+                <a class="nav-link" href="/#products">Our Products</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
+                <a class="nav-link" href="/#about">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact Us</a>
+                <a class="nav-link" href="/contact.html">Contact Us</a>
               </li>
 
               <li class="nav-item">
@@ -116,7 +116,7 @@ https://templatemo.com/tm-546-sixteen-clothing
     @if (session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
        @endif
-    <div class="latest-products">
+    <div class="latest-products" id="products">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -174,7 +174,7 @@ https://templatemo.com/tm-546-sixteen-clothing
             @foreach ($data as $product)
             <div class="col-md-4">
                 <div class="product-item">
-                  <a href="#"><img src="/storage/{{ $product->image }}" alt=""></a>
+                  <a href="#"><img src="/storage/{{ $product->image }}" style="height: 271px" alt=""></a>
                   <div class="down-content">
                     <a href="#"><h4>{{ $product->title }}</h4></a>
                     <h6>${{ $product->price }}</h6>
@@ -198,7 +198,7 @@ https://templatemo.com/tm-546-sixteen-clothing
         </div>
       </div>
 
-    <div class="best-features">
+    <div class="best-features" id="about">
       <div class="container">
         <div class="row">
           <div class="col-md-12">

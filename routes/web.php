@@ -28,20 +28,17 @@ Route::middleware([
 Route::get('/redirect',[HomeController::class,'redirect']);
 Route::get('/',[HomeController::class,'index']);
 
-Route::get('/product',[AdminController::class,'product']);
+Route::get('/product',[AdminController::class,'product'])->middleware('auth');
 Route::post('/uploadProduct',[AdminController::class,'uploadProduct']);
-
-Route::get('/products',[AdminController::class,'products']);
-
-Route::delete('/products/{product}/delete',[AdminController::class,'destroy']);
-Route::get('/products/{product}/update',[AdminController::class,'updateProduct']);
+Route::get('/products',[AdminController::class,'products'])->middleware('auth');
+Route::delete('/products/{product}/delete',[AdminController::class,'destroy'])->middleware('auth');
+Route::get('/products/{product}/update',[AdminController::class,'updateProduct'])->middleware('auth');
 Route::post('/products/{product}/updated',[AdminController::class,'updateDProduct']);
 
 Route::post('/carts/{product}',[HomeController::class,'addcart']);
-Route::get('/carts/mycart',[HomeController::class,'mycarts']);
-
-Route::get('/carts/{cart}/delete',[HomeController::class,'destroy']);
+Route::get('/carts/mycart',[HomeController::class,'mycarts'])->middleware('auth');
+Route::get('/carts/{cart}/delete',[HomeController::class,'destroy'])->middleware('auth');
 Route::post('/orders',[HomeController::class,'confirmOrder']);
 Route::get('/admin_order',[AdminController::class,'orders']);
-Route::get('/deliver/{order}',[AdminController::class,'deliver']);
+Route::get('/deliver/{order}',[AdminController::class,'deliver'])->middleware('auth');
 
