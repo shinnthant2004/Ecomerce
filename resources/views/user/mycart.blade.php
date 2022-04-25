@@ -92,7 +92,6 @@ https://templatemo.com/tm-546-sixteen-clothing
           <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">#</th>
                 <th scope="col">Product Name</th>
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
@@ -101,7 +100,6 @@ https://templatemo.com/tm-546-sixteen-clothing
             <tbody>
               @foreach ($carts as $cart)
               <tr>
-                <th scope="row">{{ $cart->id }}</th>
                 <td>{{ $cart->product_name }}</td>
                 <td>{{ $cart->price }}</td>
                 <td>{{ $cart->quantity }}</td>

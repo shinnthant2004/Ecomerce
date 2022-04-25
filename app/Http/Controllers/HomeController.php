@@ -19,7 +19,8 @@ class HomeController extends Controller
         if($usertype=='1'){
             return view('admin.home');
         }else{
-            $user=Auth::user();
+            if(Auth::user()){
+                $user=Auth::user();
             $carts=Cart::where('phone',$user->phone);
             $cartCount=$carts->count();
             return view('user.home',[
@@ -27,6 +28,12 @@ class HomeController extends Controller
                 'categories'=>Category::all(),
                 'cartCount'=>$cartCount
             ]);
+            }else{
+                return view('user.home',[
+                    'data'=>Product::latest()->filter(request(['category','search']))->paginate(3)->withQueryString(),
+                    'categories'=>Category::all(),
+                ]);
+            }
         }
     }
     public function index(){
